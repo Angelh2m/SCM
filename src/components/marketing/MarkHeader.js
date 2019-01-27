@@ -1,10 +1,8 @@
 import React from 'react'
-
-import './M_header.scss'
-
+import './MarkHeader.scss'
 import marketingSvg from './marketing-hero.svg';
 
-export default function M_header() {
+export default function MarkHeader() {
     return (
         <div>
             <img src={marketingSvg} alt="" />

@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import check from './check-mark.svg'
 import map from './map.svg'
 import DATA from '../../content/marketingPage.json'
-import './M_body.scss'
+import './MarkBody.scss'
 
 
 
-export default class M_body extends Component {
+export default class MarkBody extends Component {
 
     constructor(props) {
         super(props)

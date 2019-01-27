@@ -1,16 +1,13 @@
 import React from 'react'
-import { Link } from 'gatsby'
-
-import Layout from '../components/layout'
-import Image from '../components/image'
+import MarketingLayout from '../components/marketing/MarketingLayout'
 import SEO from '../components/seo'
 
 import './index.scss';
 
 const IndexPage = () => (
-  <Layout >
+  <MarketingLayout >
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-  </Layout>
+  </MarketingLayout>
 )
 
 export default IndexPage
