@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+ul,
+li {
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    margin-bottom: 2.5rem;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+form {
+    width: 100%;
+}
+
+.container {
+    padding: 1rem 1.5rem;
+    max-width: 1000px;
+    position: relative;
+    margin: 0 auto;
+}
+
+
+@import '../../scss/media.scss';
+
+
+.button {
+
+    display: inline-block;
+    // padding: .5rem 2.5rem;
+    margin-top: 3.8rem;
+    font-weight: 600;
+    color: #2e3092;
+    padding: .5rem 1.8rem;
+
+    &__white {
+        background-color: white;
+    }
+
+    &__green {
+        background-color: #19d82a;
+        color: white;
+    }
+}
+
+.buttons__action {
+    // display: flex;
+    // margin-bottom: 4rem;
+    // justify-content: center;
+    position: absolute;
+    bottom: 7rem;
+    text-align: center;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+
+    @include tablet {
+        position: absolute;
+        top: -1.5rem;
+        right: 1.5rem;
+        text-align: right;
+    }
+}
+
+
+
+.icon {
+    &--check {
+        width: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+
+article {
+    h2 {
+        margin-bottom: 2.5rem;
+        margin-top: 4rem;
+    }
+}
+
+
+
+
+
+// GRID
+
+.row {
+    // display: flex;
+    // align-items: center;
+    position: relative;
+
+    @include tablet {
+        display: flex;
+    }
+}
+
+.col-6 {
+
+    display: block;
+
+    @include tablet {
+        display: inline-block;
+        width: 50%;
+    }
+}
+
+
+
+#___gatsby {
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+// STYLES
+.text {
+    &--title {
+        color: #2e3092;
+        font-weight: 200;
+        font-size: 2rem;
+
+        strong {
+            color: #2e3092;
+        }
+    }
+
+    &--center {
+        text-align: center;
+    }
+
+    &--quote {
+        padding: 1rem;
+        text-align: center;
+
+
+        p {
+            color: white;
+            ;
+
+        }
+    }
+}

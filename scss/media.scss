@@ -1,0 +1,20 @@
+@mixin iphone {
+    @media screen and (min-width: 376px) {
+        @content;
+    }
+}
+
+
+@mixin tablet {
+    @media screen and (min-width: 700px) {
+        @content;
+    }
+}
+
+
+
+@mixin desktop {
+    @media screen and (min-width: 980px) {
+        @content;
+    }
+}
