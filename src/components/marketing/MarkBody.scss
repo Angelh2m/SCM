@@ -104,6 +104,15 @@
     }
 }
 
+.row-abs {
+    position: absolute;
+    width: 100%;
+    /* top: 0; */
+    bottom: 5rem;
+}
+
+
+
 .form--search {
 
     height: 2.5rem;
@@ -119,11 +128,12 @@
     width: 130vw;
     height: 28rem;
     background-color: #2f2e42;
-    position: absolute;
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
     left: -30vw;
     z-index: -1;
     height: 26rem;
+    position: relative;
+    margin-top: 4rem;
 }
 
 .background--whitesmoke {
@@ -150,4 +160,15 @@
     @include tablet {
         height: 12rem;
     }
+}
+
+.confirmation {
+    text-align: center;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    min-height: 15rem;
+    margin-bottom: 1.5rem;
+
 }

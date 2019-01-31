@@ -6,6 +6,7 @@ import './MarkBody.scss'
 
 
 
+
 export default class MarkBody extends Component {
 
     constructor(props) {
@@ -14,7 +15,8 @@ export default class MarkBody extends Component {
             results: [],
             name: '',
             email: '',
-            question: ''
+            question: '',
+            isSent: false
 
         };
 
@@ -58,12 +60,10 @@ export default class MarkBody extends Component {
     }
 
     submitQuestion() {
-        console.warn(this.state);
-
+        // console.warn(this.state);
         try {
+            this.setState({ isSent: true })
             if (this.state.errors.name.length === '' && this.state.errors.email.length === '') {
-                console.warn("FETCH ");
-
                 return fetch("https://xcp50czy8i.execute-api.us-east-1.amazonaws.com/dev/api", {
                     method: "POST", // *GET, POST, PUT, DELETE, etc.
                     headers: {
@@ -74,7 +74,7 @@ export default class MarkBody extends Component {
                 })
                     .then(response => response.json()).then(resp => {
                         console.warn(resp);
-
+                        this.setState({ isSent: true })
 
                     })
             }
@@ -128,16 +128,18 @@ export default class MarkBody extends Component {
                         <ul>
                             <li>
                                 <img className="icon--check" src={check} alt="" />
-                                No insurance needed</li>
+                                No insurance is needed</li>
                             <li>
                                 <img className="icon--check" src={check} alt="" />
-                                Support 24/7</li>
+                                Our service is available 24/7</li>
+
                             <li>
                                 <img className="icon--check" src={check} alt="" />
-                                We have only higly experienced doctors</li>
+                                Forget about copays and unexpected charges
+                            </li>
                             <li>
                                 <img className="icon--check" src={check} alt="" />
-                                Excellent support
+                                We work only the highly experienced doctors from Mexico
                             </li>
                         </ul>
                     </div>
@@ -159,7 +161,7 @@ export default class MarkBody extends Component {
                 </article>
 
                 <article >
-                    <h2 className="text--title"> <strong>When to </strong>  use it </h2>
+                    <h2 className="text--title"> <strong>When to </strong>  use it ?</h2>
                     <div className="row">
                         <div className="">
                             <h2 className="title--green">Online Consultations</h2>
@@ -213,12 +215,12 @@ export default class MarkBody extends Component {
                 <article >
                     <h2 className="text--title"> <strong>Affordable </strong>Pricing</h2>
                     <div className="row">
-                        <div ></div>
+
                         <div className="col-6">
                             <div className="subscription subscription__card--one " >
                                 <div className="subscription__container">
                                     <h3>1 Year suppport</h3>
-                                    <span className="subscription__price">$39</span>
+                                    <span className="subscription__price">$39 <small>per month</small> </span>
                                     <button className="subscription__button">Sing Up</button>
                                 </div>
                                 <p className="subscription__footer">Subscription does not cover medical expenes or medications</p>
@@ -231,7 +233,7 @@ export default class MarkBody extends Component {
                             <div className="subscription subscription__card--two " >
                                 <div className="subscription__container">
                                     <h3>6 Months suppport</h3>
-                                    <span className="subscription__price">$49</span>
+                                    <span className="subscription__price">$49 <small>per month</small> </span>
                                     <button className="subscription__button--blue ">Sing Up</button>
                                 </div>
                                 <p className="subscription__footer">Subscription does not cover medical expenes or medications</p>
@@ -244,34 +246,50 @@ export default class MarkBody extends Component {
 
 
 
-                <article >
-                    <h2 className="text--title"> <strong>Any</strong> questions?</h2>
-                    <div className="background--blue"></div>
-                    <div className="row">
-                        <form className="form">
-                            <div className="form--block">
-                                <label>Name</label>
-                                {this.state.errors && this.state.errors.name && this.state.errors.name && (
-                                    <span>{this.state.errors.name}</span>
-                                )}
-                                <input onChange={this.formValidate} onFocus={this.formValidate} name="name" type="text" />
-                            </div>
+                <article className="full-witdh" >
+                    <div className="container">
+                        <h2 className="text--title"> <strong>Any</strong> questions?</h2>
+                    </div>
+                    <div className="background--blue">
 
-                            <div className="form--block">
-                                <label>Email</label>
-                                {this.state.errors && this.state.errors.email && this.state.errors.email && (
-                                    <span>{this.state.errors.email}</span>
-                                )}
-                                <input onChange={this.formValidate} onFocus={this.formValidate} name="email" type="email" />
-                            </div>
-                            <div className="form--block">
-                                <label>Comment</label>
-                                <textarea onChange={this.formValidate} onFocus={this.formValidate} name="question" ></textarea>
-                            </div>
-                            <div className="form--block text--center">
-                                <button onClick={this.submitQuestion} className="button--green" type="button">Ask Question</button>
-                            </div>
-                        </form>
+
+                    </div>
+                    <div className="row-abs">
+                        {!this.state.isSent && (
+                            <form className="form">
+                                <div className="">
+                                    <label>Name</label>
+                                    {this.state.errors && this.state.errors.name && this.state.errors.name && (
+                                        <span>{this.state.errors.name}</span>
+                                    )}
+                                    <input onChange={this.formValidate} onFocus={this.formValidate} name="name" type="text" />
+                                </div>
+
+                                <div className="">
+                                    <label>Email</label>
+                                    {this.state.errors && this.state.errors.email && this.state.errors.email && (
+                                        <span>{this.state.errors.email}</span>
+                                    )}
+                                    <input onChange={this.formValidate} onFocus={this.formValidate} name="email" type="email" />
+                                </div>
+                                <div className="">
+                                    <label>Comment</label>
+                                    <textarea onChange={this.formValidate} onFocus={this.formValidate} name="question" ></textarea>
+                                </div>
+                                <div className=" text--center">
+                                    <button onClick={this.submitQuestion} className="button--green" type="button">Ask Question</button>
+                                </div>
+                            </form>
+                        )}
+
+                        {this.state.isSent && (
+                            <form className="form">
+                                <div className="confirmation">
+                                    <h2>THANK YOU!</h2>
+                                    <p>Your question has been succesfully submitted</p>
+                                </div>
+                            </form>
+                        )}
                     </div>
                 </article>
 

@@ -24,15 +24,18 @@ const MarketingLayout = ({ children }) => (
           <MarkHeader />
         </header>
 
-        <div className="container">
+        <div className="">
           <MarkBody />
           {children}
-        </div>
-        <footer>
-          © {new Date().getFullYear()}, Doctor
+
+          <footer>
+            © {new Date().getFullYear()},
+            Doctor
             {` `}
-          <span>Care</span>
-        </footer>
+            <span>Care</span> <small>MX</small>
+          </footer>
+        </div>
+
       </>
     )}
   />

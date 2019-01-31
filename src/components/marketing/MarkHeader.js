@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import './MarkHeader.scss'
 import marketingSvg from './marketing-hero.svg';
 
@@ -23,7 +24,7 @@ export default function MarkHeader() {
 
                             <div className="comparison__card col-6">
                                 <div className="comparison__title">
-                                    <h2>Kenee Postetic Cost</h2>
+                                    <h2>Knee Prosthetic Cost</h2>
                                 </div>
                                 <div className="comparison__chart">
                                     <div className="comparison__element">
@@ -58,7 +59,9 @@ export default function MarkHeader() {
 
 
                 <div className="buttons__action">
-                    <div className="button button__white"> Sign Up </div>
+                    <div className="button button__white">
+                        <Link to="doctor-consultations-free-trial">Sign Up </Link>
+                    </div>
                     <div className="button button__green"> Free trial </div>
                 </div>
 

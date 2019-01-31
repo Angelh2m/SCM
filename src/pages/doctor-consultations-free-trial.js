@@ -2,13 +2,35 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import './doctor-consultations.scss';
 
 const SecondPage = () => (
   <Layout>
     <SEO title="Page two" />
-    <h1>Hi from the second page</h1>
-    <p>Welcome to page 2</p>
-    <Link to="/">Go back to the homepage</Link>
+    <div className="background-charcoal"></div>
+    <div className="marketing__header">
+      <p className="logo">
+        <Link to="/">  <strong> Doctor  </strong> Care <small>MX</small></Link>
+      </p>
+    </div>
+    <div className="login">
+
+      <div className="login__tabs text-center">
+        <h2>Free trial</h2>
+        {/* <h2>Existing members</h2> */}
+      </div>
+
+      <form>
+        <label>Name: </label>
+        <input type="text" name="name" />
+        <label>Email: </label>
+        <input type="email" name="email" />
+        <button className="button--send" type="button">
+          SEND
+        </button>
+      </form>
+
+    </div>
   </Layout>
 )
 

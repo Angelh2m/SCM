@@ -1,0 +1,58 @@
+import React, { Component } from 'react'
+import { injectStripe } from 'react-stripe-elements';
+import CardSection from './CardSection';
+
+
+
+class CheckoutForm extends Component {
+    handleSubmit = (ev) => {
+        // We don't want to let default form submission happen here, which would refresh the page.
+        ev.preventDefault();
+
+        // Within the context of `Elements`, this call to createToken knows which Element to
+        // tokenize, since there's only one in this group.
+        // this.props.stripe.createToken({ name: 'Jenny Rosen' }).then(({ token }) => {
+        //     console.log('Received Stripe token:', token);
+        // });
+
+
+        // However, this line of code will do the same thing:
+        //
+        try {
+
+            this.props.stripe.createToken({ type: 'card', name: 'Jenny Rosen' }).then(({ token }) => {
+                console.log('Received Stripe token:', token);
+            });
+        } catch (error) {
+            console.log(error);
+
+        }
+
+
+        // You can also use createSource to create Sources. See our Sources
+        // documentation for more: https://stripe.com/docs/stripe-js/reference#stripe-create-source
+        //
+        // this.props.stripe.createSource({
+        //     type: 'card', owner: {
+        //         name: 'Jenny Rosen'
+        //     }
+        // }).then(({ token }) => {
+        //     console.log('Received Stripe token:', token);
+        // });
+    };
+
+
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        <CardSection />
+                    </label>
+                    <button>Confirm order</button>
+                </form>
+            </div>
+        )
+    }
+}
+export default injectStripe(CheckoutForm)
