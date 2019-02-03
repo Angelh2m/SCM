@@ -24,36 +24,39 @@ export default function MarkHeader() {
                 </p>
               </div>
 
-              <div className="comparison__card col-6">
-                <div className="comparison__title">
-                  <h2>Knee Prosthetic Cost</h2>
-                </div>
-                <div className="comparison__chart">
-                  <div className="comparison__element">
-                    <div className="comparison__flex">
-                      <span>USA</span>
-                      <span>35K+</span>
-                    </div>
-                    <div className="comparison__line--p" />
+              <div className="col-6">
+                <div className="comparison__card ">
+                  <div className="comparison__title">
+                    <h2>Knee Prosthetic Cost</h2>
                   </div>
-                  <div className="comparison__element comparison__mexico">
-                    <div className="comparison__flex">
-                      <span>Mexico</span>
-                      <span>5K+</span>
+                  <div className="comparison__chart">
+                    <div className="comparison__element">
+                      <div className="comparison__flex">
+                        <span>USA</span>
+                        <span>35K+</span>
+                      </div>
+                      <div className="comparison__line--p" />
                     </div>
-                    <div className="comparison__line--p" />
-                    <div className="comparison__line--gray" />
-                    <div className="comparison__line--travel" />
+                    <div className="comparison__element comparison__mexico">
+                      <div className="comparison__flex">
+                        <span>Mexico</span>
+                        <span>5K+</span>
+                      </div>
+                      <div className="comparison__line--p" />
+                      <div className="comparison__line--gray" />
+                      <div className="comparison__line--travel" />
+                    </div>
                   </div>
-                </div>
-                <div className="comparison__legend">
-                  <span className="comparison__bullet-green" />
-                  <p>Optional Travel</p>
-                  <span className="comparison__bullet-purple" />
-                  <p>Approximate cost surgery and hospital</p>
+                  <div className="comparison__legend">
+                    <span className="comparison__bullet-green" />
+                    <p>Optional Travel</p>
+                    <span className="comparison__bullet-purple" />
+                    <p>Approximate cost surgery and hospital</p>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
 

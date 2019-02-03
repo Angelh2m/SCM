@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
 import './MarketingLayout.scss'
+import '../../../scss/index.scss'
+
 import MarkHeader from './MarkHeader'
 import MarkBody from './MarkBody'
 

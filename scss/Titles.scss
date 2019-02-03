@@ -1,0 +1,28 @@
+// STYLES
+.text {
+    &--title {
+        color: #2e3092;
+        font-weight: 200;
+        font-size: 2rem;
+
+        strong {
+            color: #2e3092;
+        }
+    }
+
+    &--center {
+        text-align: center;
+    }
+
+    &--quote {
+        padding: 1rem;
+        text-align: center;
+
+
+        p {
+            color: white;
+            ;
+
+        }
+    }
+}

@@ -1,0 +1,44 @@
+.button {
+    display: inline-block;
+    // padding: .5rem 2.5rem;
+    margin-top: 3.8rem;
+    font-weight: 600;
+    color: #2e3092;
+    padding: .5rem 1.8rem;
+
+    &__white {
+        background-color: white;
+    }
+
+    &__green {
+        background-color: #19d82a;
+        color: white;
+    }
+
+    &__purple {
+        background-color: #33315e;
+        color: white;
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        border: solid;
+    }
+}
+
+.buttons__action {
+    // display: flex;
+    // margin-bottom: 4rem;
+    // justify-content: center;
+    position: absolute;
+    bottom: 7rem;
+    text-align: center;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+
+    @include tablet {
+        position: absolute;
+        top: -1.5rem;
+        right: 1.5rem;
+        text-align: right;
+    }
+}

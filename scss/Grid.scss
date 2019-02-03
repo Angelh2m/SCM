@@ -1,0 +1,62 @@
+// GRID
+
+.container {
+    padding: 1rem 1.5rem;
+    max-width: 1000px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.full-witdh {
+    padding: 0rem;
+    max-width: none;
+}
+
+.container--flex {
+    display: flex;
+}
+
+.row {
+    position: relative;
+
+    @include tablet {
+        display: flex;
+    }
+}
+
+
+.col-6 {
+
+    display: block;
+    position: relative;
+
+    @include tablet {
+        display: inline-block;
+        width: 50%;
+    }
+}
+
+
+.col-65 {
+    display: block;
+
+    @include tablet {
+        display: inline-block;
+        width: 65%;
+    }
+}
+
+.col-35 {
+    display: block;
+
+    @include tablet {
+        display: inline-block;
+        width: 35%;
+        background-color: white;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        box-shadow: -2px 4px 7px 0px #f3f3f3;
+        right: 0;
+    }
+}

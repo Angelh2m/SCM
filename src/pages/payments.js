@@ -5,9 +5,8 @@ import Layout from '../components/layout'
 import { StripeProvider } from 'react-stripe-elements'
 import MyStoreCheckout from '../components/stripe/MyStoreCheckout'
 
-import './index.scss'
 
-import Header from '../components/header'
+import Header from '../components/Header/header';
 import SEO from '../components/seo'
 
 export default class payments extends Component {
@@ -28,13 +27,13 @@ export default class payments extends Component {
       })
     }
   }
+
   render() {
     return (
-      <div className="payments">
+      <div>
         <Header />
         <Layout theme="payment--container">
-          <SEO title="Page two" />
-
+          <SEO title="Make a payment" />
           <div className="container">
             <StripeProvider stripe={this.state.stripe}>
               <MyStoreCheckout />

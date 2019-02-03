@@ -10,7 +10,6 @@
 .form {
     background-color: whitesmoke;
     padding: 1rem;
-    // margin: 5rem;
     margin-top: 0;
     padding-top: 2rem;
 
@@ -18,7 +17,6 @@
     @include tablet {
         width: 66%;
         margin: 0 auto;
-        // margin-bottom: 5rem;
     }
 
     @include desktop {

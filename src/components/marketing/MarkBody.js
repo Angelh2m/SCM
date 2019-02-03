@@ -75,7 +75,7 @@ export default class MarkBody extends Component {
             this.setState({ isSent: true })
           })
       }
-    } catch (error) {}
+    } catch (error) { }
   }
 
   search(e) {
@@ -154,12 +154,7 @@ export default class MarkBody extends Component {
           <div className="row spacer ">
             <div className="background--gray" />
             <div className="text--quote">
-              <p>
-                {' '}
-                We are a group of surgeons with decades of experience with one
-                goal in common -- provide the most affordable and high quality
-                healthcare for everyone{' '}
-              </p>
+              <p> {DATA.MISSION} </p>
             </div>
           </div>
         </article>
@@ -174,14 +169,8 @@ export default class MarkBody extends Component {
               <h2 className="title--green">Online Consultations</h2>
               <p> {DATA.ONLINE_CONSULTATIONS} </p>
             </div>
-            {/* <div className="col-6">
-                        IMAGE HRE
-                    </div> */}
           </div>
           <div className="row">
-            {/* <div className="col-6">
-                        <span>IMAGE HERE</span>
-                    </div> */}
             <div className="">
               <h2 className="title--green">Major surgery prodedures</h2>
               <p> {DATA.SURGERY_TRAVEL}</p>

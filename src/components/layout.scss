@@ -1,15 +1,63 @@
+.background-charcoal {
+    background-color: #2f2e42;
+    height: 100vh;
+    width: 160vw;
+    position: absolute;
+    top: 0;
+    left: -40vw;
+    z-index: -1;
+}
+
+.logo {
+
+    a,
+    small {
+        color: #00ffff;
+    }
+}
+
+.login {
+    display: block;
+    background-color: white;
+    padding: 1.5rem;
+    max-width: 27rem;
+    margin: 0 auto;
+    margin-bottom: 8rem;
+    margin-top: 5rem;
+
+
+    &__tabs {
+        display: flex;
+        margin-bottom: 1rem;
+        border-bottom: solid 1px #e0e0e0;
+        padding-bottom: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+        margin-right: 1.5rem;
+        color: #404040;
+        margin: 0 auto;
+
+    }
+}
+
+.button--send {
+    background-color: #8BC34A;
+    padding: 0.5rem 1.5rem;
+    margin-top: 1rem;
+    font-weight: 600;
+    border: none;
+    color: white;
+}
+
+
+// STRIPE
+
 .payment--container {
     background-color: #f9fbfd;
-    // padding: 1rem 1.5rem;
-    // max-width: 1000px;
-    // position: relative;
-    // margin: 0 auto;
     min-height: 30rem;
     overflow: hidden;
-
-    input {
-        background-color: white;
-    }
 
     .StripeElement {
         background-color: white;
