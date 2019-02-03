@@ -21,18 +21,11 @@
         // margin-bottom: 5rem;
     }
 
+    @include desktop {
+        width: 40%;
+        margin: 0 auto;
+    }
 
-
-    // &--block {
-    //     margin-bottom: 1rem;
-    // }
-
-    // label {
-    //     display: inline-block;
-    //     font-weight: 600;
-    //     margin-bottom: .5rem;
-    //     float: left;
-    // }
 
     span {
         float: left;
@@ -115,6 +108,8 @@
         border: solid 0px;
         font-weight: bold;
     }
+
+
 
     &__card--one {
         background-color: #b33b8a;

@@ -54,15 +54,17 @@ function SEO({ description, lang, meta, keywords, title }) {
               .concat(
                 keywords.length > 0
                   ? {
-                    name: `keywords`,
-                    content: keywords.join(`, `),
-                  }
+                      name: `keywords`,
+                      content: keywords.join(`, `),
+                    }
                   : []
               )
               .concat(meta)}
           >
-            <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,700,800,900" rel="stylesheet"></link>
-
+            <link
+              href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,700,800,900"
+              rel="stylesheet"
+            />
           </Helmet>
         )
       }}

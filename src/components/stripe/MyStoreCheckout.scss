@@ -1,0 +1,89 @@
+.payment {
+    &__form {
+        max-width: 26rem;
+        margin-bottom: 5rem;
+        border: solid 1px #e0e0e0;
+        padding: 1.5rem;
+        border-radius: 7px;
+        background-color: white;
+    }
+}
+
+h2 {
+    color: #332f60;
+
+}
+
+
+.order-summary {
+    h3 {
+        border-bottom: solid 1px #dce9f5;
+        padding: 0.5rem 1rem 1.5rem;
+        color: #33305f;
+    }
+
+    h2 {
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 50%;
+        text-align: center;
+        line-height: 2;
+
+    }
+
+    hr {
+        border: solid .5px #dce9f5;
+        margin-top: 6rem;
+    }
+
+    &__details {
+        padding: .5rem 1.5rem;
+        color: #402f60;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    strong {
+        color: #142563;
+    }
+
+    &--label {
+        background-color: #332e61;
+        padding: .5rem;
+        border: solid #03A9F4;
+        border-radius: 5px;
+        color: white;
+    }
+}
+
+.option {
+    max-width: 26rem;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 3rem;
+    cursor: pointer;
+
+}
+
+.option-package {
+    font-weight: 500;
+    padding: 1.5rem 1.5rem;
+    border: solid 1px #e0e0e0;
+    width: 48%;
+    text-align: center;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.option-package--active {
+    font-weight: 500;
+    padding: 1.5rem 1.5rem;
+    border: solid 1px #332f60;
+    width: 48%;
+    text-align: center;
+    border-radius: 5px;
+
+    background-color: #332f60;
+    color: whitesmoke;
+
+}

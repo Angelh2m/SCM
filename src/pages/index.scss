@@ -19,7 +19,7 @@ body {
 
 form {
     width: 100%;
-    border: solid 1px #dadada;
+
     border-radius: .5rem;
 }
 
@@ -132,6 +132,14 @@ footer {
         background-color: #19d82a;
         color: white;
     }
+
+    &__purple {
+        background-color: #33315e;
+        color: white;
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        border: solid;
+    }
 }
 
 .buttons__action {
@@ -197,6 +205,34 @@ article {
     }
 }
 
+
+.col-65 {
+
+    display: block;
+
+    @include tablet {
+        display: inline-block;
+        width: 65%;
+    }
+}
+
+.col-35 {
+
+    display: block;
+
+    @include tablet {
+        display: inline-block;
+        width: 35%;
+        background-color: white;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        box-shadow: -2px 4px 7px 0px #f3f3f3;
+        right: 0;
+    }
+}
+
+
 article {
     padding: 1rem 1.5rem;
     max-width: 1000px;
@@ -209,7 +245,9 @@ article {
     max-width: none;
 }
 
-
+.container--flex {
+    display: flex;
+}
 
 #___gatsby {
     overflow-x: hidden;

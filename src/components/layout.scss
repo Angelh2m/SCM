@@ -1,0 +1,28 @@
+.payment--container {
+    background-color: #f9fbfd;
+    // padding: 1rem 1.5rem;
+    // max-width: 1000px;
+    // position: relative;
+    // margin: 0 auto;
+    min-height: 30rem;
+    overflow: hidden;
+
+    input {
+        background-color: white;
+    }
+
+    .StripeElement {
+        background-color: white;
+        padding: .5rem;
+        width: 100%;
+        display: block;
+        border: solid 1px whitesmoke;
+        line-height: 3.5;
+        padding-left: .6rem;
+        border: solid 1px #e0e0e0;
+        border-radius: 7px;
+        margin-bottom: 1rem;
+        margin-top: .5rem;
+        padding: .8rem;
+    }
+}

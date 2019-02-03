@@ -1,13 +1,17 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
+import './header.scss'
 
 const Header = ({ siteTitle }) => (
   <header>
-    <nav >
-
-      <Link to="/" > Surgery Care </Link>
-
+    <nav>
+      <p className="header--w">
+        <Link to="/">
+          {' '}
+          <strong> Doctor </strong> Care <small>MX</small>
+        </Link>
+      </p>
     </nav>
   </header>
 )

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
 import './MarketingLayout.scss'
-import MarkHeader from './MarkHeader';
-import MarkBody from './MarkBody';
+import MarkHeader from './MarkHeader'
+import MarkBody from './MarkBody'
 
 const MarketingLayout = ({ children }) => (
   <StaticQuery
@@ -29,13 +29,11 @@ const MarketingLayout = ({ children }) => (
           {children}
 
           <footer>
-            © {new Date().getFullYear()},
-            Doctor
+            © {new Date().getFullYear()}, Doctor
             {` `}
             <span>Care</span> <small>MX</small>
           </footer>
         </div>
-
       </>
     )}
   />
