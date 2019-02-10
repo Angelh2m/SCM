@@ -3,9 +3,14 @@
 
 .marketing {
     background-color: #2e3192;
-    margin-bottom: 0rem;
+    margin-bottom: 5rem;
     height: 34rem;
     position: relative;
+
+    @include iphone {
+        bottom: 0rem;
+    }
+
 
     h3 {
         margin: 0;
@@ -17,6 +22,7 @@
 
     p {
         color: #00ffff;
+
     }
 
     &__header {
@@ -24,7 +30,7 @@
         &--p {
             @include tablet {
                 line-height: 1.5;
-                font-size: 2.5rem;
+                font-size: 2rem;
 
                 strong {
                     display: block;
@@ -35,8 +41,16 @@
 
         &__box {
             position: absolute;
-            bottom: 12rem;
+            bottom: 4rem;
             width: 100%;
+
+            @include tablet {
+                bottom: 10rem;
+            }
+
+            @include desktop {
+                bottom: 9rem;
+            }
         }
     }
 
@@ -74,11 +88,18 @@
 
             h2 {
                 color: white;
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+
+                @include iphone {
+                    font-size: 2rem;
+                }
 
                 @include tablet {
-                    font-size: 3.5rem;
+                    font-size: 2.5rem;
+                }
 
+                @include desktop {
+                    font-size: 3.1rem;
                 }
             }
 
@@ -117,7 +138,7 @@
         padding: .5rem;
         position: relative;
         border-radius: 1rem;
-        box-shadow: 1px 1px 11px 0px grey;
+        box-shadow: 1px 1px 3px 0 grey;
 
         @include tablet {
             position: absolute;

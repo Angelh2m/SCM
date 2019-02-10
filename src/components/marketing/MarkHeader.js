@@ -13,15 +13,13 @@ export default function MarkHeader() {
         </p>
         <div className="marketing__hero">
           <div className="marketing__hero__text">
-            <h2>Unlimited Consultations</h2>
+            <h2>We specialize in surgeries and online consultations for all your health-related questions.</h2>
           </div>
 
           <div className=" marketing__header__box">
             <div className="row">
               <div className="col-6">
-                <p className="marketing__header--p">
-                  <strong> Save up to 70% </strong> on major surgeries
-                </p>
+                <p className="marketing__header--p"> <strong> You can save up to 80% </strong> on major surgeries. </p>
               </div>
 
               <div className="col-6">
@@ -51,7 +49,7 @@ export default function MarkHeader() {
                     <span className="comparison__bullet-green" />
                     <p>Optional Travel</p>
                     <span className="comparison__bullet-purple" />
-                    <p>Approximate cost surgery and hospital</p>
+                    <p>Approximate cost of surgery and hospital fees</p>
                   </div>
                 </div>
               </div>

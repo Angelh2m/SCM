@@ -1,6 +1,7 @@
+@import './Media';
+
 #___gatsby {
     overflow-x: hidden;
-    overflow: visible;
 }
 
 body {
@@ -62,13 +63,17 @@ textarea {
 
 article {
     position: relative;
-    overflow-x: hidden;
+    // overflow-x: hidden;
 
     * {
         box-sizing: border-box;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
 
+    }
+
+    @include tablet {
+        overflow-x: visible;
     }
 }
 
@@ -137,4 +142,10 @@ footer {
         font-size: .5rem;
         color: #00ffff;
     }
+}
+
+input {
+    font-size: 16px;
+    height: 3rem;
+    display: inline-block;
 }

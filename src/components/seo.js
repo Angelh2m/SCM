@@ -54,9 +54,9 @@ function SEO({ description, lang, meta, keywords, title }) {
               .concat(
                 keywords.length > 0
                   ? {
-                      name: `keywords`,
-                      content: keywords.join(`, `),
-                    }
+                    name: `keywords`,
+                    content: keywords.join(`, `),
+                  }
                   : []
               )
               .concat(meta)}
@@ -65,6 +65,8 @@ function SEO({ description, lang, meta, keywords, title }) {
               href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,700,800,900"
               rel="stylesheet"
             />
+            <meta name="apple-mobile-web-app-capable" content="yes"></meta>
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
           </Helmet>
         )
       }}

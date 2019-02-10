@@ -118,7 +118,7 @@ export default class MarkBody extends Component {
           <div className="col-6 ">
             <h2 className="text--title">
               {' '}
-              <strong>Why our </strong> service{' '}
+              <strong>Why choose</strong> us?{' '}
             </h2>
             <ul>
               <li>
@@ -132,11 +132,11 @@ export default class MarkBody extends Component {
 
               <li>
                 <img className="icon--check" src={check} alt="" />
-                Forget about copays and unexpected charges
+                Forget about co-pays and unexpected charges
               </li>
               <li>
                 <img className="icon--check" src={check} alt="" />
-                We work only the highly experienced doctors from Mexico
+                We work with only the most highly experienced doctors from Mexico
               </li>
             </ul>
           </div>
@@ -162,7 +162,7 @@ export default class MarkBody extends Component {
         <article>
           <h2 className="text--title">
             {' '}
-            <strong>When to </strong> use it ?
+            <strong>When should you use </strong> our service?
           </h2>
           <div className="row">
             <div className="">
@@ -172,12 +172,13 @@ export default class MarkBody extends Component {
           </div>
           <div className="row">
             <div className="">
-              <h2 className="title--green">Major surgery prodedures</h2>
-              <p> {DATA.SURGERY_TRAVEL}</p>
+              <h2 className="title--green">Major surgeries</h2>
+              {/* <p> {DATA.SURGERY_TRAVEL}</p> */}
+              <p> Most of our patients come to us after finding out how much a surgery will cost them in the United States. If you know what surgery you already need, why not come to us and pay a fraction of the price?</p>
               <ul>
-                <li>{DATA.SURGERY_T_ONE} </li>
-                <li>{DATA.SURGERY_T_TWO} </li>
-                <li>{DATA.SURGERY_T_THREE} </li>
+                <li>1. <strong>Decision making: </strong> {DATA.SURGERY_T_ONE} </li>
+                <li>2. <strong>Traveling to Mexico: </strong> {DATA.SURGERY_T_TWO} </li>
+                <li>2. <strong>Return and recovering: </strong>{DATA.SURGERY_T_THREE} </li>
               </ul>
             </div>
           </div>
@@ -192,7 +193,7 @@ export default class MarkBody extends Component {
             <div className="available-doctors">
               <div className="background--overlay" />
               <div className="background--whitesmoke" />
-              <h3>Are you looking for a sppecific specialist?</h3>
+              <h3>Search for available and specific specialists</h3>
               <input
                 type="text"
                 placeholder="Search for a specialist..."
@@ -219,20 +220,25 @@ export default class MarkBody extends Component {
             {' '}
             <strong>Affordable </strong>Pricing
           </h2>
+          <p>
+            Sign up for a consultation with a doctor. If you are planning on scheduling a surgery OR you just have health-related questions for the doctor, then you will do this/ask your questions during the consultation.
+
+            Choose the in-person consultation only if you are already in Mexico and are able to visit the doctor in-person.
+                  </p>
           <div className="row">
             <div className="col-6">
               <div className="subscription subscription__card--one ">
                 <div className="subscription__container">
-                  <h3>1 Year suppport</h3>
+                  <h3>Online consultation</h3>
                   <span className="subscription__price">
-                    $39 <small>per month</small>{' '}
+                    $49 <small>per consultation</small>{' '}
                   </span>
                   <Link className="subscription__button" to="/payments">
-                    Sing Up
+                    Purchase
                   </Link>
                 </div>
                 <p className="subscription__footer">
-                  Subscription does not cover medical expenes or medications
+                  Consultation fee does not cover medical expenes or medications
                 </p>
                 <div className=" subscription__card--one-b " />
               </div>
@@ -242,16 +248,16 @@ export default class MarkBody extends Component {
             <div className="col-6">
               <div className="subscription subscription__card--two ">
                 <div className="subscription__container">
-                  <h3>6 Months suppport</h3>
+                  <h3>In person consultation</h3>
                   <span className="subscription__price">
-                    $49 <small>per month</small>{' '}
+                    $30 <small>per consultation</small>{' '}
                   </span>
                   <Link className="subscription__button--blue " to="/payments">
-                    Sing Up
+                    Purchase
                   </Link>
                 </div>
                 <p className="subscription__footer">
-                  Subscription does not cover medical expenes or medications
+                  Subscription does not cover medical expenses or medications
                 </p>
                 <div className=" subscription__card--two-b " />
               </div>
@@ -263,7 +269,7 @@ export default class MarkBody extends Component {
           <div className="container">
             <h2 className="text--title">
               {' '}
-              <strong>Any</strong> questions?
+              <strong>Any questions?</strong> Contact us.
             </h2>
           </div>
           <div className="background--blue" />

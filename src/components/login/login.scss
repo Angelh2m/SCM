@@ -1,3 +1,5 @@
+@import "../../../scss/Media";
+
 .form-comments__avatar {
     width: 4rem;
     border-radius: 50%;
@@ -81,7 +83,7 @@
 }
 
 .register {
-    width: 34rem;
+
     margin: 0 auto;
     margin-bottom: 3rem;
     margin-top: 1rem;
@@ -89,6 +91,12 @@
     padding: 2.1rem;
     border-radius: 0.5rem;
     border: solid 1px #efefef;
+    width: 100%;
+
+    @include tablet {
+        width: 34rem;
+    }
+
 }
 
 

@@ -40,21 +40,23 @@
     }
 
     &--card {
-        /* position: absolute; */
         background-color: #2f2e43;
-        width: 100%;
+        width: 105vw;
         border-radius: 6px;
         padding: 1.5rem;
         margin-top: .2rem;
         z-index: 10;
-
         margin: 0 auto;
-        left: 0;
+        margin-left: -2rem;
         right: 0;
-        /* max-width: 70%; */
         margin-top: .5rem;
         box-shadow: 0px 0px 20px 0px #84808080;
         border: solid 1px #d6d6d69c;
+
+        @include iphone {
+            width: 100%;
+            margin-left: 0rem;
+        }
 
         @include tablet {
             max-width: 80%;
@@ -154,12 +156,16 @@
     background-color: #333182;
     position: absolute;
     width: 140vw;
-    height: 15rem;
+    height: 20rem;
     top: -30px;
     left: -30vw;
     z-index: -1;
     color: white;
     background-image: linear-gradient(#2b2986, #2320a0);
+
+    @include iphone {
+        height: 15rem;
+    }
 
     @include tablet {
         height: 12rem;
