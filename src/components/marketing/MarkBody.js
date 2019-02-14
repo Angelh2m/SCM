@@ -14,6 +14,10 @@ export default class MarkBody extends Component {
       email: '',
       question: '',
       isSent: false,
+      errors: {
+        name: '',
+        email: ''
+      }
     }
 
     this.formValidate = this.formValidate.bind(this)
@@ -51,31 +55,26 @@ export default class MarkBody extends Component {
   }
 
   submitQuestion() {
-    // console.warn(this.state);
-    try {
-      this.setState({ isSent: true })
-      if (
-        this.state.errors.name.length === '' &&
-        this.state.errors.email.length === ''
-      ) {
-        return fetch(
-          'https://xcp50czy8i.execute-api.us-east-1.amazonaws.com/dev/api',
-          {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            headers: {
-              'Content-Type': 'application/json',
-              // "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: JSON.stringify({ location: 'HY' }), // body data type must match "Content-Type" header
-          }
-        )
-          .then(response => response.json())
-          .then(resp => {
-            console.warn(resp)
-            this.setState({ isSent: true })
-          })
+    if (this.state.email.includes("@"))
+      fetch(`${process.env.API_ENDPOINT}/${process.env.QUESTIONS}`, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          'Content-Type': 'application/json',
+          // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: JSON.stringify({
+          name: this.state.name,
+          email: this.state.email,
+          question: this.state.question
+        }), // body data type must match "Content-Type" header
       }
-    } catch (error) { }
+      )
+        .then(response => response.json())
+        .then(resp => {
+          console.warn(resp)
+          this.setState({ isSent: true })
+        }).catch(err => console.log(err))
+
   }
 
   search(e) {

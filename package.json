@@ -16,6 +16,7 @@
     "gatsby-plugin-stripe-elements": "^1.0.9",
     "gatsby-source-filesystem": "^2.0.8",
     "gatsby-transformer-sharp": "^2.1.8",
+    "jwt-decode": "^2.2.0",
     "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",

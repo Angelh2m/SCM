@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-
 import { GoogleLogin } from 'react-google-login'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-
-import './login.scss'
 import googleIcon from '../../images/icons/google.png'
 import Form from './Form'
-// import { ENDPOINTS } from '../../services/apiCalls'
-// import './Sociallogin.scss'
 import { STORAGE_NAME } from '../../util/validators'
+import './SocialLogin.scss'
 
-export default class Login extends Component {
+import { SocialLogin_API } from "../../util/service_calls"
+
+import jwt_decode from "jwt-decode"
+
+export default class SocialLogin extends Component {
     constructor(props) {
         super(props)
+
         this.state = {
             userData: {},
             errors: {
@@ -27,29 +28,47 @@ export default class Login extends Component {
         this.logUserOut = this.logUserOut.bind(this)
         this.responseGoogle = this.responseGoogle.bind(this)
         this.responseFacebook = this.responseFacebook.bind(this)
+        this.enablePayment = this.enablePayment.bind(this)
+        this.readTokenAndEnablePayment = this.readTokenAndEnablePayment.bind(this)
     }
 
-    componentDidMount() {
-        const userData = localStorage.getItem(STORAGE_NAME)
-        try {
-            if (userData) {
-                this.setState({ userLoggedIn: true })
-                this.setState({
-                    userData: JSON.parse(localStorage.getItem(STORAGE_NAME)),
-                })
-            }
-        } catch (error) { }
+
+    enablePayment() {
+        this.props.updateLogin(true)
+        this.enableUserPayment(true)
     }
 
     logUserOut() {
         localStorage.removeItem(STORAGE_NAME)
-        this.handleUserLogin(false)
+        this.enableUserPayment(false)
     }
 
+    enableUserPayment(resp) {
+        this.props.updateLogin(resp)
+        this.setState({ userLoggedIn: resp })
+    }
+
+    readTokenAndEnablePayment(tokenResponse) {
+        try {
+            const decoded = jwt_decode(JSON.stringify(tokenResponse));
+            // *** Default LOGIN
+            this.setState({ userData: { name: decoded.name, avatar: decoded.avatar } })
+            this.enablePayment();
+
+        } catch (error) { }
+
+    }
+
+    componentDidMount() {
+        const userData = localStorage.getItem(STORAGE_NAME);
+        this.readTokenAndEnablePayment(userData)
+    }
+
+
+
     async responseFacebook(response) {
-        if (response.error) {
-            return
-        }
+        if (response.error) { return }
+
         let userSchema = {
             name: response.name,
             firstName: response.name,
@@ -60,42 +79,32 @@ export default class Login extends Component {
             exp: response.expiresIn,
         }
 
-        localStorage.setItem(STORAGE_NAME, JSON.stringify(userSchema))
         this.setState({ userData: userSchema, errors: [] })
     }
 
     componentClicked(res) { }
 
+
     async responseGoogle(response) {
-        let userSchema
-        if (response.error) {
-            return
+
+        if (response.error) { return }
+        let google = response.profileObj;
+
+        const payload = {
+            name: google.name,
+            firstName: google.givenName,
+            lastName: google.familyName,
+            email: google.email,
+            avatar: google.imageUrl,
+            password: google.googleId,
+            googleID: google.googleId,
         }
 
-        if (response && !response.error) {
-            userSchema = {
-                name: response.profileObj.name,
-                firstName: response.profileObj.givenName,
-                lastName: response.profileObj.familyName,
-                email: response.profileObj.email,
-                avatar: response.profileObj.imageUrl,
-                socialID: response.googleId,
-                exp: response.expires_at,
-            }
-        }
-        console.warn(userSchema)
-
-        // _Save users information to DB
-        localStorage.setItem(STORAGE_NAME, JSON.stringify(userSchema))
-
-        this.handleUserLogin(true)
-        this.setState({ userData: userSchema })
+        let resp = await SocialLogin_API(payload)
+        localStorage.setItem(STORAGE_NAME, resp.token)
+        this.readTokenAndEnablePayment(resp.token)
     }
 
-    handleUserLogin(flag) {
-        this.props.updateLogin(flag)
-        this.setState({ userLoggedIn: flag })
-    }
 
     render() {
         return (
@@ -110,12 +119,8 @@ export default class Login extends Component {
                             callback={this.responseFacebook}
                             icon="icon-facebook"
                             render={renderProps => (
-                                <button
-                                    className="button--facebook"
-                                    onClick={renderProps.onClick}
-                                >
-                                    {' '}
-                                    Login With Facebook{' '}
+                                <button className="button--facebook" onClick={renderProps.onClick} >
+                                    Login With Facebook
                                 </button>
                             )}
                         />
@@ -126,32 +131,21 @@ export default class Login extends Component {
                             onSuccess={this.responseGoogle}
                             onFailure={this.responseGoogle}
                             render={renderProps => (
-                                <button
-                                    className="button--google"
-                                    onClick={renderProps.onClick}
-                                >
-                                    <img
-                                        className="google__login--image"
-                                        src={googleIcon}
-                                        alt=""
-                                    />
+                                <button className="button--google" onClick={renderProps.onClick} >
+                                    <img className="google__login--image" src={googleIcon} alt="" />
                                     <span className="google__text"> Login with Google</span>
                                 </button>
                             )}
                         />
 
-                        <Form updateLogin={() => this.handleUserLogin(true)} />
+                        <Form updateLogin={(resp) => this.enableUserPayment(resp)} />
                     </div>
                 )}
 
                 {this.state.userData && this.state.userLoggedIn && (
                     <>
                         <div className="container--flex comments__header-format">
-                            <img
-                                className="form-comments__avatar"
-                                src={this.state.userData.avatar}
-                                alt=""
-                            />
+                            <img className="form-comments__avatar" src={this.state.userData.avatar} alt="" />
                             <div className="comments__user">
                                 <p>{this.state.userData.name} </p>
                                 <span className="link" onClick={this.logUserOut}>  LOGOUT </span>
