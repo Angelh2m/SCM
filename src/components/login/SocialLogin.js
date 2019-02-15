@@ -100,7 +100,11 @@ export default class SocialLogin extends Component {
             googleID: google.googleId,
         }
 
+        console.warn(payload);
+
         let resp = await SocialLogin_API(payload)
+        console.warn(resp);
+
         localStorage.setItem(STORAGE_NAME, resp.token)
         this.readTokenAndEnablePayment(resp.token)
     }

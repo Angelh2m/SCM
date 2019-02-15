@@ -28,7 +28,9 @@ class CheckoutForm extends Component {
         const response = await MakePayment(userToken, stripeToken.token.id, "400");
 
         console.warn(response);
-        if (response.ok === true) {
+
+        console.warn(response);
+        if (response) {
             /* *
             *  HANDLE SUCCESS SCREEN
             */
@@ -63,7 +65,7 @@ class CheckoutForm extends Component {
                 {this.state.isLoggedin && (
                     <div>
                         <div className="col-65">
-                            <h2>Select your membership:</h2>
+                            <h2>Select consultation type:</h2>
                             <div className="option">
                                 <div className={optionPackage} id="1" onClick={this.selection} >
                                     $49 Online consultation

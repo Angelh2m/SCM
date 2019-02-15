@@ -62,7 +62,7 @@ export default function MarkHeader() {
           <div className="button button__white">
             <Link to="doctor-consultations-free-trial">Sign Up </Link>
           </div>
-          <div className="button button__green"> Free trial </div>
+          <Link className="button button__green" to="doctor-consultations-free-trial"> Sign in </Link>
         </div>
       </div>
     </div>

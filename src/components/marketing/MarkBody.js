@@ -56,7 +56,7 @@ export default class MarkBody extends Component {
 
   submitQuestion() {
     if (this.state.email.includes("@"))
-      fetch(`${process.env.API_ENDPOINT}/${process.env.QUESTIONS}`, {
+      fetch(`http://localhost:4000/api/question`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         headers: {
           'Content-Type': 'application/json',

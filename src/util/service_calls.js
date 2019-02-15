@@ -30,7 +30,7 @@ const SocialLogin_API = (payload) => {
     })
         .then(response => response.json())
         .then(response => response)
-        .then(resp => resp).catch(err => console.log(err))
+        .then(resp => resp).catch(err => err)
 }
 
 const MakePayment = (Usertoken, StripeToken, amount) => {

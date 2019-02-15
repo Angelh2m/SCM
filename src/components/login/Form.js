@@ -11,6 +11,7 @@ export default class Form extends Component {
             type: "login",
             token: "",
             userData: {},
+            isUserRegistered: false,
             errors: {
                 name: '',
                 email: '',
@@ -89,6 +90,7 @@ export default class Form extends Component {
 
         if (response && response._id) {
             /* ***  SUCCESS LOGGED IN */
+            this.setState({ isUserRegistered: true })
         }
     }
 
@@ -117,7 +119,7 @@ export default class Form extends Component {
 
     formType(type) {
         console.warn(type);
-        this.setState({ type: type, errors: {} })
+        this.setState({ type: type, errors: {}, isUserRegistered: false })
     }
 
 
@@ -220,61 +222,70 @@ export default class Form extends Component {
                 )}
 
 
-
-
-                {this.state.type === "register" && (
+                {this.state.isUserRegistered && (
                     <div className="login--form">
-                        <label>Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            onKeyUp={this.validate}
-                            onChange={this.validate}
-                            onBlur={this.validate}
-                        />
-                        {this.state.errors && this.state.errors.name ? (
-                            <small>{this.state.errors.name}</small>
-                        ) : null}
-
-                        <label>Email</label>
-                        <input
-                            type="text"
-                            name="email"
-                            onKeyUp={this.validate}
-                            onChange={this.validate}
-                            onBlur={this.validate}
-                        />
-                        {this.state.errors && this.state.errors.email ? (
-                            <small>{this.state.errors.email}</small>
-                        ) : null}
-
-                        <label>Password</label>
-                        <input
-                            type="Password"
-                            name="password"
-                            onChange={this.validate}
-                            onChange={this.validate}
-                            onBlur={this.validate}
-                        />
-                        {this.state.errors && this.state.errors.password ? (
-                            <small>{this.state.errors.password}</small>
-                        ) : null}
-
-                        <label>Confirm password</label>
-                        <input
-                            type="Password"
-                            name="password1"
-                            onChange={this.validate}
-                            onChange={this.validate}
-                            onBlur={this.validate}
-                        />
-                        {this.state.errors && this.state.errors.password1 ? (
-                            <small>{this.state.errors.password1}</small>
-                        ) : null}
-
-                        <button className="button__purple" onClick={this.register}>Register</button>
+                        <div className="success--confirmation">
+                            <h2>Success</h2>
+                            <p>You have been successfully registed</p>
+                        </div>
                     </div>
                 )}
+
+                {
+                    this.state.type === "register" && !this.state.isUserRegistered && (
+                        <div className="login--form">
+                            <label>Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                onKeyUp={this.validate}
+                                onChange={this.validate}
+                                onBlur={this.validate}
+                            />
+                            {this.state.errors && this.state.errors.name ? (
+                                <small>{this.state.errors.name}</small>
+                            ) : null}
+
+                            <label>Email</label>
+                            <input
+                                type="text"
+                                name="email"
+                                onKeyUp={this.validate}
+                                onChange={this.validate}
+                                onBlur={this.validate}
+                            />
+                            {this.state.errors && this.state.errors.email ? (
+                                <small>{this.state.errors.email}</small>
+                            ) : null}
+
+                            <label>Password</label>
+                            <input
+                                type="Password"
+                                name="password"
+                                onChange={this.validate}
+                                onChange={this.validate}
+                                onBlur={this.validate}
+                            />
+                            {this.state.errors && this.state.errors.password ? (
+                                <small>{this.state.errors.password}</small>
+                            ) : null}
+
+                            <label>Confirm password</label>
+                            <input
+                                type="Password"
+                                name="password1"
+                                onChange={this.validate}
+                                onChange={this.validate}
+                                onBlur={this.validate}
+                            />
+                            {this.state.errors && this.state.errors.password1 ? (
+                                <small>{this.state.errors.password1}</small>
+                            ) : null}
+
+                            <button className="button__purple" onClick={this.register}>Register</button>
+                        </div>
+                    )
+                }
 
 
             </>
