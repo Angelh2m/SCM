@@ -219,11 +219,6 @@ export default class MarkBody extends Component {
             {' '}
             <strong>Affordable </strong>Pricing
           </h2>
-          <p>
-            Sign up for a consultation with a doctor. If you are planning on scheduling a surgery OR you just have health-related questions for the doctor, then you will do this/ask your questions during the consultation.
-
-            Choose the in-person consultation only if you are already in Mexico and are able to visit the doctor in-person.
-                  </p>
           <div className="row">
             <div className="col-6">
               <div className="subscription subscription__card--one ">
@@ -241,6 +236,7 @@ export default class MarkBody extends Component {
                 </p>
                 <div className=" subscription__card--one-b " />
               </div>
+              <small className="small--legend" >  Sign up for a consultation with a doctor. If you are planning on scheduling a surgery OR you just have health-related questions for the doctor, then you will do this/ask your questions during the consultation.</small>
             </div>
             {/*  */}
 
@@ -260,6 +256,7 @@ export default class MarkBody extends Component {
                 </p>
                 <div className=" subscription__card--two-b " />
               </div>
+              <small className="small--legend">Choose the in-person consultation only if you are already in Mexico and are able to visit the doctor in-person.</small>
             </div>
           </div>
         </article>

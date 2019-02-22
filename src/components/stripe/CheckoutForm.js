@@ -10,37 +10,67 @@ class CheckoutForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            isProcessing: false,
             active: '',
             isLoggedin: false,
+            paymentSuccessful: false,
+            active: '',
+            name: '',
+            error: ''
         }
         this.selection = this.selection.bind(this)
+        this.setName = this.setName.bind(this)
         this.isUserLoggedIn = this.isUserLoggedIn.bind(this)
     }
 
     handleSubmit = async (ev) => {
         ev.preventDefault()
+        let price = 0;
 
         const userToken = localStorage.getItem(STORAGE_NAME);
 
-        const stripeToken = await this.props.stripe.createToken({ type: 'card', name: 'Jenny Rosen' })
+        /* *
+        *  VALIDATION
+        */
+
+        if (!this.state.active || !this.state.name) {
+            this.setState({ error: `Please make sure that name and memebership selection is enabled` })
+            return console.warn("WARNING", this.state.active, " | ", this.state.name, " | ", this.isLoggedin)
+        } else {
+            this.setState({ error: null })
+        }
+
+        this.setState({ isProcessing: true })
+
+        const stripeToken = await this.props.stripe.createToken({ type: 'card', name: 'AngEl' })
             .then(resp => resp)
 
-        const response = await MakePayment(userToken, stripeToken.token.id, "400");
+        try {
+            if (this.state.active == 1) { price = 39 } else { price = 49 }
 
-        console.warn(response);
+            const response = await MakePayment(userToken, stripeToken.token.id, price);
 
-        console.warn(response);
-        if (response) {
-            /* *
-            *  HANDLE SUCCESS SCREEN
-            */
-        }
+            if (response) {
+                console.warn(response);
+                /* *
+                *  HANDLE SUCCESS SCREEN
+                */
+                this.setState({ isProcessing: false })
+                this.setState({ paymentSuccessful: true });
+            }
+        } catch (error) { }
+
 
     }
 
     selection($event) {
         console.warn($event.target.id)
         this.setState({ active: $event.target.id })
+    }
+
+    setName($event) {
+        console.warn($event.target.id)
+        this.setState({ name: $event.target.value })
     }
 
     isUserLoggedIn(isLoggedIn) {
@@ -55,79 +85,78 @@ class CheckoutForm extends Component {
 
         return (
             <div>
-
-                {this.state.isLoggedin && (<h2> This payment will be credited for: </h2>)}
-
-                <div className={this.state.isLoggedin ? 'option' : 'register'}>
-                    <SocialLogin updateLogin={flag => this.isUserLoggedIn(flag)} />
-                </div>
-
-                {this.state.isLoggedin && (
-                    <div>
-                        <div className="col-65">
-                            <h2>Select consultation type:</h2>
-                            <div className="option">
-                                <div className={optionPackage} id="1" onClick={this.selection} >
-                                    $49 Online consultation
-                                </div>
-                                <div className={optionPackage2} id="2" onClick={this.selection} >
-                                    $39 In person consultation
-                                </div>
-                            </div>
-                            <h2>Payment information:</h2>
-                            <div className="payment__form">
-                                <form onSubmit={this.handleSubmit}>
-                                    <label>Nanme</label>
-                                    <input type="text" placeholder="Name" />
-                                    <label>
-                                        <CardSection />
-                                    </label>
-                                    <button className="button__purple">Submit payment</button>
-                                </form>
-                            </div>
+                {this.state.paymentSuccessful && (
+                    <div className="col-65">
+                        <div className="success--alert">
+                            <div>Success</div>
+                            <div>Your pament has been succesfully made</div>
+                            <span>Please visit Link: to open your first cosuntation </span>
                         </div>
                     </div>
                 )}
+                {!this.state.paymentSuccessful && (
 
-                <div
-                    className={this.state.isLoggedin ? 'col-35 order-summary' : 'hidden'}
-                >
-                    {!this.state.active && (
-                        <div>
-                            <h2>Select your memebership</h2>
+                    <div>
+                        <div className="col-65">
+                            {this.state.isLoggedin && (<h2> This payment will be credited for: </h2>)}
                         </div>
-                    )}
 
-                    {this.state.active && (
-                        <div>
-                            <h3>Order Summary</h3>
+                        <div className={this.state.isLoggedin ? 'option col-65' : 'register '}>
+                            <SocialLogin updateLogin={flag => this.isUserLoggedIn(flag)} />
+                        </div>
+
+                        {this.state.isLoggedin && (
                             <div>
-                                {/* <span>CARD</span> */}
-                                <div className="order-summary__details">
-                                    <span className="order-summary--label">
-                                        {this.state.active === '1' ? 'Online consultation' : ''}
-                                        {this.state.active === '2' ? 'In person consultation' : ''}
-                                    </span>
-                                    <strong>
-                                        {this.state.active === '1' ? '$39' : ''}
-                                        {this.state.active === '2' ? '$49' : ''}
-                                    </strong>
+                                <div className="col-65">
+                                    <h2>Select consultation type:</h2>
+                                    <div className="option">
+                                        <div className={optionPackage} id="1" onClick={this.selection} >$49 Online consultation</div>
+                                        <div className={optionPackage2} id="2" onClick={this.selection} >$39 In person consultation</div>
+                                    </div>
+                                    <h2>Payment information:</h2>
+                                    <div className="payment__form">
+                                        <form onSubmit={this.handleSubmit}>
+                                            <label>Name</label>
+                                            <input type="text" placeholder="Name" onChange={this.setName} />
+                                            <label>
+                                                <CardSection />
+                                            </label>
+
+                                            <div className="order-summary__details">
+                                                <strong>Total</strong>
+                                                <strong>
+                                                    {this.state.active === '1' ? `$${49} ` : ''}
+                                                    {this.state.active === '2' ? `$${39} ` : ''}
+                                                </strong>
+                                            </div>
+
+                                            <button className={' button__purple'}>
+                                                Submit payment</button>
+                                        </form>
+
+
+
+                                        {
+                                            this.state.error && (
+                                                <div className="alert">{this.state.error}</div>
+                                            )
+                                        }
+
+
+                                        {
+                                            this.state.isProcessing && (
+                                                <div className="processing">We are processing your payment ...</div>
+                                            )
+                                        }
+                                    </div>
+
                                 </div>
                             </div>
+                        )}
 
-                            <div>
-                                <hr />
-                                <div className="order-summary__details">
-                                    <strong>Total</strong>
-                                    <strong>
-                                        {this.state.active === '1' ? `$${39} ` : ''}
-                                        {this.state.active === '2' ? `$${49} ` : ''}
-                                    </strong>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                    </div>
+                )}
+
             </div>
         )
     }

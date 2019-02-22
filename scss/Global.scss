@@ -149,3 +149,24 @@ input {
     height: 3rem;
     display: inline-block;
 }
+
+
+.success--confirmation {
+    background-color: aliceblue;
+    padding: 1.5rem;
+}
+
+
+.link {
+    color: #2f2e43;
+    float: right;
+    cursor: pointer;
+    margin-top: .9rem;
+    font-size: 1rem;
+
+}
+
+.success--alert {
+    background-color: #3ae03a3d;
+    padding: 2rem;
+}

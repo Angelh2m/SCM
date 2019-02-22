@@ -40,7 +40,7 @@ const MakePayment = (Usertoken, StripeToken, amount) => {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': Usertoken,
+            'Authorization': Usertoken.replace(/(")/g, ""),
         },
         body: JSON.stringify({
             type: "NEW_PAYMENT",

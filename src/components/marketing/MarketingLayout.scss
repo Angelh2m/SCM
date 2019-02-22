@@ -50,8 +50,19 @@
 }
 
 
+.small--legend {
+    color: #585858;
+    font-size: .8rem;
+    max-width: 22rem;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 3rem;
+    text-align: justify;
+}
+
 
 .subscription {
+
     @include tablet {
         width: 90%;
     }
@@ -61,6 +72,8 @@
         z-index: 1;
         position: absolute;
     }
+
+
 
     h3 {
         font-size: 1.8rem;
@@ -147,6 +160,8 @@
         height: 15rem;
         max-width: 25rem;
         margin: 0 auto;
+        margin-bottom: 2rem;
+
     }
 
     &__card--two-b {

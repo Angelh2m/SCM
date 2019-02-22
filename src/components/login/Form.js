@@ -11,6 +11,7 @@ export default class Form extends Component {
             type: "login",
             token: "",
             userData: {},
+            confirmationMessage: '',
             isUserRegistered: false,
             errors: {
                 name: '',
@@ -85,8 +86,12 @@ export default class Form extends Component {
 
     async register() {
         const payload = { name: this.state.name, email: this.state.email, password: this.state.password }
+
+        if (!payload.name && !payload.email && !payload.password) {
+            return
+        }
+
         const response = await RegisterUser(payload).then(resp => resp);
-        console.warn(response);
 
         if (response && response._id) {
             /* ***  SUCCESS LOGGED IN */
@@ -96,6 +101,10 @@ export default class Form extends Component {
 
     async login() {
         const payload = { email: this.state.email, password: this.state.password }
+
+        if (!payload.email && !payload.password) {
+            return
+        }
         const response = await Login(payload)
         console.warn(response);
         if (response.token) {
@@ -106,20 +115,36 @@ export default class Form extends Component {
 
     async recover() {
         const payload = { email: this.state.email }
-        const response = await recoverPassword(payload);
-        console.warn(response);
+        if (this.state.email) {
+            const response = await recoverPassword(payload, this.state.token);
+
+            if (response.success) {
+                this.setState({ confirmationMessage: "We have sen't you a recovery email", email: null })
+            } else {
+
+            }
+        }
+
     }
 
     async setNewPass(event) {
-        console.log(this.state);
+
         const payload = { password: this.state.password }
-        const response = await newPassword(payload, this.state.token);
-        console.warn(response);
+        console.warn(payload, this.state.token);
+        if (!this.state.confirmationMessage) {
+            const response = await newPassword(payload, this.state.token);
+            if (response.success) {
+                this.setState({ confirmationMessage: "You have successfully reset your password", email: null })
+            }
+            console.warn(response);
+        }
+
+
     }
 
     formType(type) {
         console.warn(type);
-        this.setState({ type: type, errors: {}, isUserRegistered: false })
+        this.setState({ type: type, errors: {}, isUserRegistered: false, confirmationMessage: "" })
     }
 
 
@@ -140,6 +165,9 @@ export default class Form extends Component {
 
                 {this.state.type == "recoverPassword" && (
                     <div className="login--form">
+                        {this.state.confirmationMessage && (
+                            <div className="success--alert ">{this.state.confirmationMessage}</div>
+                        )}
                         <h2>Recover your password</h2>
                         <label>Registered email</label>
                         <input
@@ -182,6 +210,11 @@ export default class Form extends Component {
                             onChange={this.validate}
                             onBlur={this.validate}
                         />
+
+                        {this.state.confirmationMessage && (
+                            <div className="success--alert ">{this.state.confirmationMessage}</div>
+                        )}
+
                         {this.state.errors && this.state.errors.password1 ? (
                             <small>{this.state.errors.password1}</small>
                         ) : null}
@@ -195,7 +228,7 @@ export default class Form extends Component {
 
                 {this.state.type === "login" && (
                     <div className="login--form">
-                        <label>Password</label>
+                        <label>Email</label>
                         <input
                             type="email"
                             name="email"
@@ -205,7 +238,7 @@ export default class Form extends Component {
                         />
 
 
-                        <label>Confirm password</label>
+                        <label>Password</label>
                         <input
                             type="Password"
                             name="password"
@@ -214,7 +247,12 @@ export default class Form extends Component {
                             onBlur={this.validate}
                         />
 
-                        <a className={this.state.type === "recoverPassword" ? "active" : null} onClick={() => this.formType("recoverPassword")} >Forgot password</a>
+                        <a className={this.state.type === "recoverPassword" ? "active" : null} onClick={() => this.formType("recoverPassword")} >
+                            <span className="link">
+                                Forgot password
+
+                            </span>
+                        </a>
 
                         <button className="button__purple" onClick={this.login}>Login</button>
 

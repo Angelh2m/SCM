@@ -51,6 +51,8 @@ export default class SocialLogin extends Component {
     readTokenAndEnablePayment(tokenResponse) {
         try {
             const decoded = jwt_decode(JSON.stringify(tokenResponse));
+            console.warn(decoded);
+
             // *** Default LOGIN
             this.setState({ userData: { name: decoded.name, avatar: decoded.avatar } })
             this.enablePayment();
@@ -60,8 +62,20 @@ export default class SocialLogin extends Component {
     }
 
     componentDidMount() {
-        const userData = localStorage.getItem(STORAGE_NAME);
-        this.readTokenAndEnablePayment(userData)
+
+        let times = 0;
+
+        setInterval(() => {
+            if (times <= 20) {
+                let userData = localStorage.getItem(STORAGE_NAME);
+                this.readTokenAndEnablePayment(userData)
+                console.warn(times);
+            }
+
+            times++
+        }, 500);
+
+
     }
 
 
@@ -113,9 +127,9 @@ export default class SocialLogin extends Component {
     render() {
         return (
             <>
-                {this.state.userLoggedIn !== true && (
+                {this.state.userLoggedIn == false && (
                     <div>
-                        <FacebookLogin
+                        {/* <FacebookLogin
                             appId="209211756650633"
                             autoLoad={false}
                             fields="name,email,picture"
@@ -127,7 +141,7 @@ export default class SocialLogin extends Component {
                                     Login With Facebook
                                 </button>
                             )}
-                        />
+                        /> */}
 
                         <GoogleLogin
                             clientId="431810918658-gedmt7omgjmlk18vgb50g2eqjvr8ln4q.apps.googleusercontent.com"
@@ -149,7 +163,12 @@ export default class SocialLogin extends Component {
                 {this.state.userData && this.state.userLoggedIn && (
                     <>
                         <div className="container--flex comments__header-format">
-                            <img className="form-comments__avatar" src={this.state.userData.avatar} alt="" />
+                            {this.state.userData.avatar && (
+                                <img className="form-comments__avatar" src={this.state.userData.avatar} alt="" />
+                            )}
+                            {!this.state.userData.avatar && (
+                                <span>{this.state.userData.name}</span>
+                            )}
                             <div className="comments__user">
                                 <p>{this.state.userData.name} </p>
                                 <span className="link" onClick={this.logUserOut}>  LOGOUT </span>
